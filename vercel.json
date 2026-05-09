@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "src/app/api/webhooks/stripe/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/checkout/confirm/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/me/delete/route.ts": {
+      "maxDuration": 60
+    }
+  }
+}
+
