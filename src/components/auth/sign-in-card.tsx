@@ -4,6 +4,7 @@ import * as React from "react";
 import { Mail } from "lucide-react";
 
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import { getClientEnv } from "@/lib/env";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -24,7 +25,9 @@ export function SignInCard({
     setLoading(true);
     try {
       const supabase = createSupabaseBrowserClient();
-      const redirectTo = `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextPath)}`;
+      const env = getClientEnv();
+      const siteUrl = env.NEXT_PUBLIC_SITE_URL ?? window.location.origin;
+      const redirectTo = `${siteUrl}/auth/callback?next=${encodeURIComponent(nextPath)}`;
       const { error: signInError } = await supabase.auth.signInWithOtp({
         email,
         options: { emailRedirectTo: redirectTo },
