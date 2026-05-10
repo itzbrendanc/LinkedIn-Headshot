@@ -16,7 +16,7 @@ const navLinks = [
   { href: "/dashboard/settings", label: "Settings" },
 ];
 
-export function SiteNav() {
+export function SiteNav({ betaEnabled }: { betaEnabled: boolean }) {
   const pathname = usePathname();
   return (
     <div className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/50">
@@ -41,7 +41,7 @@ export function SiteNav() {
               {l.label}
             </Link>
           ))}
-          <PrivateBetaBadge />
+          <PrivateBetaBadge enabled={betaEnabled} />
           <CreditsPill />
           <Button asChild size="sm" className="rounded-full">
             <Link href="/upload">Create My Headshots</Link>
